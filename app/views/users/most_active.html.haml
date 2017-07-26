@@ -1,0 +1,17 @@
+.row
+  .col-md-8.col-md-offset-2.col-lg-8.col-lg-offset-2
+    %h1.text-center Most active users from last 7 days
+    %table.table.table-striped
+      %thead
+        %tr
+          %th #
+          %th Name
+          %th Number of comments
+          %th Created at
+      %tbody
+        - @most_active_users.each_with_index do |user, i|
+          %tr
+            %td= i + 1
+            %td= user.name
+            %td= user.comments_count
+            %td= user.created_at

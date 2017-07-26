@@ -15,4 +15,5 @@ Rails.application.routes.draw do
       get :export
     end
   end
+  get '/users/most_active', to: 'users#most_active'
 end
