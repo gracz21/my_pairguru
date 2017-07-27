@@ -54,6 +54,15 @@ describe "Movies requests", type: :request do
           click_button 'Create'
           expect(page).to have_selector('div.well', count: 4)
         end
+
+        it 'allows user to add new comment after deleting the old one' do
+          visit "/movies/#{movie.id}"
+          click_link 'Delete'
+          expect(page).to have_selector('div.well', count: 3)
+          fill_in 'comment_text', with: Faker::Lorem.sentence
+          click_button 'Create'
+          expect(page).to have_selector('div.well', count: 4)
+        end
       end
 
       it 'allows user to delete his comment' do
