@@ -4,21 +4,19 @@ class CommentsController < ApplicationController
   def create
     comment = current_user.comments.create(comment_params)
     if comment.persisted?
-      redirect_to movie_path(comment_params[:movie_id]), notice: 'Comment created successfully'
+      redirect_to movie_path(params[:movie_id]), notice: 'Comment created successfully'
     else
-      redirect_to movie_path(comment_params[:movie_id]),
-                  alert: 'New comment is empty or you have already commented this movie'
+      redirect_to movie_path(params[:movie_id]), alert: 'New comment is empty or you have already commented this movie'
     end
   end
 
   def destroy
     comment = Comment.find_by_id(params[:id])
-    movie_id = comment.movie_id
     if comment.user_id == current_user.id
       comment.destroy
-      redirect_to movie_path(movie_id), notice: 'Comment deleted successfully'
+      redirect_to movie_path(params[:movie_id]), notice: 'Comment deleted successfully'
     else
-      redirect_to movie_path(movie_id), alert: "You don't own this comment"
+      redirect_to movie_path(params[:movie_id]), alert: "You don't own this comment"
     end
   end
 

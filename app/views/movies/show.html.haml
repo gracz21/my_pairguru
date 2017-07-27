@@ -3,7 +3,7 @@
   = movie.description
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(movie), class: 'btn btn-sm btn-default'
-  = render 'comments/form', comment: new_comment
+  = render 'comments/form', movie: movie, comment: Comment.new(movie_id: movie.id)
 
 %h3 Comments
 - comments.each do |comment|
@@ -15,7 +15,7 @@
       %p= comment.text
       - if comment.is_author
         .text-right
-          = link_to 'Delete', comment, method: :delete, class: 'btn btn-sm btn-danger',
+          = link_to 'Delete', [movie, comment], method: :delete, class: 'btn btn-sm btn-danger',
             data: { confirm: 'Are you sure you want to delete this comment?' }
 
 .text-center
