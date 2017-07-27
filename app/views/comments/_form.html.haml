@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      New comment
+  .panel-body
+    = form_for comment do |f|
+      = f.hidden_field :movie_id
+      .form-group
+        = f.text_area :text, class: 'form-control'
+      .actions.pull-right
+        = f.submit 'Create', class: 'btn btn-default'

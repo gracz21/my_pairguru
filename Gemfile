@@ -10,6 +10,7 @@ gem "devise"
 gem "draper", "3.0.0" # rails 5 compability
 gem "haml-rails"
 gem "jquery-rails"
+gem "kaminari"
 gem "sass-rails"
 gem "sqlite3"
 gem "uglifier"

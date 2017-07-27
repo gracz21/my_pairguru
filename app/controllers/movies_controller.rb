@@ -4,6 +4,9 @@ class MoviesController < ApplicationController
   expose_decorated(:movies) { Movie.all }
   expose(:movie)
 
+  expose_decorated(:comments) { movie.comments.order(created_at: :desc).page(params[:page]).per(10) }
+  expose(:new_comment) { Comment.new(movie_id: movie.id) }
+
   def send_info
     MovieInfoMailer.send_info(current_user, movie).deliver_now
     redirect_to :back, notice: "Email sent with movie info"
