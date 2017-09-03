@@ -9,7 +9,7 @@
           %th Number of comments
           %th Created at
       %tbody
-        - @most_active_users.each_with_index do |user, i|
+        - most_active_users.each_with_index do |user, i|
           %tr
             %td= i + 1
             %td= user.name
