@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   expose_decorated :movies, -> { Movie.all }
   expose :movie
 
-  expose_decorated :comments, -> { movie.comments.order(created_at: :desc).page(params[:page]).per(10) }
+  expose_decorated :comments, -> { movie.comments.order(created_at: :desc).page(params[:page]) }
   expose :comment, id: ->{ params[:comment_id] }, parent: :movie
 
   def send_info
