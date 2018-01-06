@@ -32,6 +32,7 @@ class User < ApplicationRecord
         .joins(:comments)
         .where('comments.created_at' => (Time.now - 7.days)..Time.now)
         .group(:id)
+	.order('comments_count DESC')
         .limit(10)
   }
 end
